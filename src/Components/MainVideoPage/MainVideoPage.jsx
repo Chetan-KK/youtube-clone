@@ -6,6 +6,12 @@ import formatNumber from "../../Utils/numConvert";
 // import SlideBar from "../SlideBar/SlideBar";
 
 function MainVideoPage() {
+  const [player, setPlayer] = useState(null);
+  const playerRef = useRef(null);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
   const [channelLogo, setChannelLogo] = useState(null);
   const [views, setViews] = useState(null);
   const [videoId, setVideoId] = useState(null);
@@ -13,56 +19,109 @@ function MainVideoPage() {
 
   const { id } = useParams();
 
+  // Customize the player options
+  const playerOptions = {
+    height: "390",
+    width: "640",
+    playerVars: {
+      autoplay: 1, // Autoplay the video
+      modestbranding: 1, // Hide YouTube logo
+      showinfo: 0, // Hide video title
+      rel: 0, // Do not show related videos at the end
+      disablekb: 1, // Disable keyboard controls
+    },
+  };
+
   useEffect(() => {
     setVideoId(id.split(",")[0]);
     setChannelId(id.split(",")[1]);
-
-    getChannelInfo();
-    getVideoInfo();
   }, []);
 
-  const readyFunc = (e) => {
-    e.target.playVideo();
+  const readyFunc = (event) => {
+    // event.target.playVideo();
+    setPlayer(event.target);
   };
 
-  const getChannelInfo = async () => {
-    try {
-      const fetchedData = await fetch(
-        `https://www.googleapis.com/youtube/v3/videos?part=statistics&key=${
-          import.meta.env.VITE_API_KEY
-        }&id=${videoId}`
-      );
-      const convertedData = await fetchedData.json();
-      if (!convertedData.items[0]) {
-        throw convertedData;
-      } else {
-        setViews(formatNumber(convertedData.items[0].statistics.viewCount));
-        console.log(views);
+  useEffect(() => {
+    if (!player) return; // Exit early if player is not set yet
+
+    const handleKeyDown = (e) => {
+      if (e.key === " ") {
+        if (player.getPlayerState() === 2) {
+          player.playVideo();
+        } else {
+          player.pauseVideo();
+        }
       }
-    } catch (err) {
-      console.log(err);
-      setViews("---");
+
+      if (e.key === "m") {
+        player.isMuted() ? player.unMute() : player.mute();
+      }
+
+      if (e.key === "ArrowRight") {
+        const newTime = player.getCurrentTime() + 5;
+        player.seekTo(newTime);
+      }
+
+      if (e.key === "ArrowLeft") {
+        const newTime = player.getCurrentTime() - 5;
+        player.seekTo(newTime < 0 ? 0 : newTime);
+      }
+
+      if (e.key === "f") {
+        toggleFullscreen();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [player]);
+
+  useEffect(() => {
+    if (player) {
+      const updateCurrentTime = () => {
+        setCurrentTime(player.getCurrentTime());
+        setDuration(player.getDuration());
+      };
+
+      const intervalId = setInterval(updateCurrentTime, 1000);
+
+      return () => {
+        clearInterval(intervalId);
+      };
     }
-  };
+  }, [player]);
 
-  const getVideoInfo = async () => {
-    try {
-      const fetchedData = await fetch(
-        `https://www.googleapis.com/youtube/v3/channels?part=snippet&key=${
-          import.meta.env.VITE_API_KEY
-        }&id=${channelId}`
-      );
-      const convertedData = await fetchedData.json();
-      console.log(convertedData);
-      if (!convertedData.items[0]) {
-        throw convertedData;
+  const toggleFullscreen = () => {
+    const iframe = player.getIframe();
+    if (iframe) {
+      if (!document.fullscreenElement) {
+        // Not in fullscreen, request fullscreen
+        if (iframe.requestFullscreen) {
+          iframe.requestFullscreen();
+        } else if (iframe.mozRequestFullScreen) {
+          iframe.mozRequestFullScreen();
+        } else if (iframe.webkitRequestFullscreen) {
+          iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) {
+          iframe.msRequestFullscreen();
+        }
       } else {
-        setChannelLogo(convertedData.items[0].snippet.thumbnails.default.url);
-        console.log(channelLogo);
+        // Currently in fullscreen, exit fullscreen
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
       }
-    } catch (err) {
-      console.log(err);
-      setChannelLogo("---");
     }
   };
 
@@ -75,6 +134,8 @@ function MainVideoPage() {
             iframeClassName="video_player-iframe"
             videoId={videoId}
             onReady={readyFunc}
+            ref={playerRef}
+            opts={playerOptions}
           />
         </div>
       </div>
