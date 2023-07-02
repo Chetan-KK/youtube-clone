@@ -15,24 +15,17 @@ import MainVideoPage from "./Components/MainVideoPage/MainVideoPage";
 import { ThemeContext } from "./Context/ThemeContext";
 
 function App() {
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme, changeTheme } = useContext(ThemeContext);
 
   const [menuToggle, setMenuToggle] = useState(true);
   const [isSlideMenu, setIsSlideMenu] = useState(false);
-
-  function handleThemeChange() {
-    if (theme === "dark") {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
-  }
 
   function handleMenu() {
     setMenuToggle(!menuToggle);
   }
 
   const location = useLocation();
+
   useEffect(() => {
     if (location.pathname.startsWith("/video/")) {
       setIsSlideMenu(true);
@@ -46,12 +39,6 @@ function App() {
 
   return (
     <div className={`App ${theme == "dark" ? "dark__mode" : ""}`}>
-      <button
-        onClick={handleThemeChange}
-        style={{ position: "absolute", zIndex: "99999999999" }}
-      >
-        theme
-      </button>
       <Header handleMenu={handleMenu} />
       <section className="main__section">
         <Sidebar openStatus={menuToggle} isSlideMenu={isSlideMenu} />

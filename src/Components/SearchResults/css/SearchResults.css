@@ -1,5 +1,4 @@
 .SearchResults {
-  --search-title-text-s: 18px;
   color: var(--text-color);
 }
 .SearchResults {
@@ -8,4 +7,9 @@
   height: 100vh;
   overflow: hidden;
   overflow-y: scroll;
+}
+@media screen and (max-width: 800px) {
+  .SearchResults {
+    padding: 0;
+  }
 }

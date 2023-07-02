@@ -11,8 +11,8 @@
 }
 .SearchVideoResult .thumbnail {
   object-fit: cover;
-  height: 13.5rem;
-  width: 25rem;
+  height: 17.5vw;
+  width: 30vw;
   border-radius: 10px;
 }
 .SearchVideoResult .title {
@@ -39,4 +39,41 @@
 .SearchVideoResult .desc {
   font-size: var(--small-text);
   color: var(--dim-text-color);
+}
+@media screen and (max-width: 900px) {
+  .SearchVideoResult {
+    align-items: center !important;
+    margin: 3rem 0;
+  }
+}
+@media screen and (max-width: 800px) {
+  .SearchVideoResult {
+    gap: 0.8rem;
+    margin: 0rem 0;
+    padding: 0.5rem;
+    width: 100vw;
+    border-bottom: 0.01px dotted rgba(128, 128, 128, 0.445);
+    border-radius: 0;
+  }
+  .SearchVideoResult:hover {
+    box-shadow: none;
+  }
+  .SearchVideoResult .thumbnail {
+    height: 25vw;
+    width: 45vw;
+    border-radius: 0px;
+  }
+
+  .SearchVideoResult .title {
+    font-size: 11px;
+  }
+  .SearchVideoResult .channel {
+    margin: 0.4rem 0;
+  }
+  .SearchVideoResult .channel .logo {
+    width: 20px;
+  }
+  .SearchVideoResult .desc {
+    font-size: 9px;
+  }
 }

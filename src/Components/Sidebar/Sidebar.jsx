@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import YouTubeLogo from "/YouTubeLogo.png";
 import homeIcon from "/icons/home.svg";
 import menuIcon from "/icons/menu.svg";
+import moonIcon from "/icons/moon.svg";
 import subscriptionIcon from "/icons/subscription.svg";
 import libraryIcon from "/icons/library.svg";
 import shortsIcon from "/icons/shorts.svg";
@@ -16,6 +17,7 @@ import Opition from "./Option/Option";
 import YouTubeLogoDark from "/YouTubeLogoDark.png";
 import homeIconDark from "/icons/dark/home.svg";
 import menuIconDark from "/icons/dark/menu.svg";
+import moonIconDark from "/icons/dark/moon.svg";
 import subscriptionIconDark from "/icons/dark/subscription.svg";
 import libraryIconDark from "/icons/dark/library.svg";
 import shortsIconDark from "/icons/dark/shorts.svg";
@@ -27,7 +29,7 @@ import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../../Context/ThemeContext";
 
 export default function Sidebar(props) {
-  const { theme } = useContext(ThemeContext);
+  const { theme, changeTheme } = useContext(ThemeContext);
 
   const [slideMenuStatus, setSlideMenuStatus] = useState(false);
 
@@ -42,6 +44,14 @@ export default function Sidebar(props) {
   const handleMenuClose = () => {
     setSlideMenuStatus(false);
   };
+
+  function handleThemeChange() {
+    if (theme === "dark") {
+      changeTheme("light");
+    } else {
+      changeTheme("dark");
+    }
+  }
 
   const OpenSideBar = () => (
     <div className="SidebarOpen">
@@ -82,6 +92,14 @@ export default function Sidebar(props) {
           name="Subscription"
           icon={theme === "dark" ? subscriptionIconDark : subscriptionIcon}
         />
+        <div className="Option flex" onClick={handleThemeChange}>
+          <img
+            src={theme === "dark" ? moonIconDark : moonIcon}
+            alt=""
+            className="icon"
+          />
+          <div>theme</div>
+        </div>
       </div>
       <div className="sidebar__section">
         <Opition

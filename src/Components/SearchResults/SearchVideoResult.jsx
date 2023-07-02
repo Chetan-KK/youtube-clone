@@ -12,10 +12,16 @@ function SearchVideoResult(props) {
   const [channelLogo, setChannelLogo] = useState(null);
   const [years, setYears] = useState(null);
 
+  const [smallScreen, setSmallScreen] = useState(window.innerWidth < 800);
+
   useEffect(() => {
     //format time in years and months format
     const timeAgo = new TimeAgo("en-US");
     setYears(timeAgo.format(new Date(props.publishTime)));
+
+    window.addEventListener("resize", () => {
+      window.innerWidth < 800 ? setSmallScreen(true) : setSmallScreen(false);
+    });
 
     getData();
   }, []);
@@ -38,7 +44,9 @@ function SearchVideoResult(props) {
           <img src={props.thumbnail} alt="thumbnail" className="thumbnail" />
         </div>
         <section>
-          <div className="title">{props.title}</div>
+          <div className="title">
+            {smallScreen ? `${props.title.slice(0, 45)}...` : props.title}
+          </div>
           <div className="stats">
             {views} views &#x2022; {years}
           </div>
@@ -46,7 +54,11 @@ function SearchVideoResult(props) {
             <img src={channelLogo} alt="" className="logo" />
             {props.channelName}
           </div>
-          <div className="desc">{props.description}</div>
+          <div className="desc">
+            {smallScreen
+              ? `${props.description.slice(0, 45)}...`
+              : props.description}
+          </div>
         </section>
       </div>
     </Link>

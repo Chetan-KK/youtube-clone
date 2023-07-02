@@ -46,6 +46,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: var(--ff);
+  /* box-shadow: 0 0 1px 1px red; */
 }
 input:focus {
   outline: none;
@@ -77,6 +78,13 @@ body {
   text-decoration: none;
 }
 @media screen and (max-width: 800px) {
+  :root,
+  .dark__mode {
+    --small-title: 12px;
+    --small-text: 9px;
+    --ff: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
   ::-webkit-scrollbar {
     width: 0px;
     height: 3px;
