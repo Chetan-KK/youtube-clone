@@ -1,0 +1,44 @@
+/* 
+channel
+ */
+.SearchResults .SearchChannelResult {
+  padding: 1.5vw;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.SearchResults .SearchChannelResult .logo {
+  width: calc(13rem + 10vw);
+  height: calc(5rem + 5vw);
+  text-align: center;
+}
+.SearchResults .SearchChannelResult .logo img {
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 100vw;
+}
+.SearchResults .SearchChannelResult .info {
+  width: 55%;
+  height: calc(6rem + 5vw);
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.SearchResults .SearchChannelResult .info .name {
+  font-size: var(--search-title-text-s);
+  color: var(--text-color);
+  font-weight: 500;
+}
+.SearchResults .SearchChannelResult .info .userName,
+.SearchResults .SearchChannelResult .info .subs {
+  color: var(--dim-text-color);
+  font-size: var(--small-text);
+  margin: 0.5vw 0 0.1vw 0;
+}
+.SearchResults .SearchChannelResult .subButton {
+  background-color: var(--text-color);
+  color: var(--primary-color);
+}

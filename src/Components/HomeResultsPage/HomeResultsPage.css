@@ -1,0 +1,32 @@
+.ResultsPage {
+  position: relative;
+}
+.ResultsPage .results {
+  padding-top: 4rem;
+  display: grid;
+  background-color: var(--primary-color);
+  position: absolute;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, 17rem);
+  grid-template-rows: repeat(auto-fill, 17rem);
+  align-items: start;
+  justify-content: center;
+  gap: 0.5rem;
+  row-gap: 1rem;
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 100%;
+}
+@media screen and (max-width: 800px) {
+  .ResultsPage .results {
+    padding-top: 4rem;
+    width: 100vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .ResultsPage .results {
+    grid-template-columns: repeat(auto-fill, 100%);
+    grid-template-rows: auto;
+    row-gap: 1rem;
+  }
+}

@@ -1,0 +1,84 @@
+:root {
+  --primary-color: #ffffff;
+  --searchbox-bg: hsl(0, 0%, 93%);
+  --icon-hover-color: rgb(233, 233, 233);
+  --border-color: rgb(196, 196, 196);
+  --button-color: rgb(230, 230, 230);
+  --button-hover-color: rgb(216, 216, 216);
+  --input-outline: rgb(78, 78, 255);
+  --text-color: rgb(24, 24, 24);
+  --selected-option-bg: rgb(27, 27, 27);
+  --selected-option-text: rgb(255, 255, 255);
+  --small-title: 14px;
+  --small-text: 12px;
+  --dim-text-color: rgb(150, 150, 150);
+  --ff: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.dark__mode {
+  --primary-color: #0f0f0f;
+  --searchbox-bg: hsl(0, 0%, 7%);
+  --icon-hover-color: rgb(36, 36, 36);
+  --border-color: rgb(43, 43, 43);
+  --button-color: rgb(39, 39, 39);
+  --button-hover-color: rgb(53, 53, 53);
+  --input-outline: rgb(70, 70, 199);
+  --text-color: rgb(241, 241, 241);
+  --selected-option-bg: rgb(238, 238, 238);
+  --selected-option-text: rgb(8, 8, 8);
+  --small-title: 14px;
+  --small-text: 12px;
+  --dim-text-color: rgb(150, 150, 150);
+  --ff: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+::-webkit-scrollbar {
+  background-color: var(--primary-color);
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 10px;
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--ff);
+}
+input:focus {
+  outline: none;
+  box-shadow: inset 0 0 1px 1px var(--input-outline);
+}
+body {
+  overflow-y: hidden;
+  background-color: var(--primary-color);
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.normal_icon {
+  padding: 10px;
+  border-radius: 50vw;
+  height: 40px;
+  cursor: pointer;
+}
+.normal_icon:hover {
+  background-color: var(--icon-hover-color);
+}
+.button {
+  border-radius: 100vw;
+  padding: 0.5rem 1.7rem;
+  border: none;
+}
+.link {
+  text-decoration: none;
+}
+@media screen and (max-width: 800px) {
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 3px;
+  }
+}

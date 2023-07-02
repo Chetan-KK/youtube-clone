@@ -1,0 +1,24 @@
+.MainVideoPage {
+  margin: 0 auto;
+  align-items: flex-start !important;
+  justify-content: center;
+  width: 100vw;
+  gap: 4rem;
+}
+.player-section .video-container {
+  position: relative;
+  margin: 1rem 2rem;
+}
+.player-section .video_player {
+  position: relative;
+  opacity: 0.99;
+}
+.player-section .video_player-iframe {
+  width: 55vw;
+  border-radius: 10px;
+  height: 31vw;
+}
+.videos-section {
+  width: 30rem;
+  height: 100vh;
+}

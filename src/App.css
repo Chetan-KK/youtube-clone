@@ -1,0 +1,9 @@
+.main__section {
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-template-rows: 100vh;
+  background-color: var(--primary-color);
+}
+.App {
+  background-color: var(--primary-color);
+}

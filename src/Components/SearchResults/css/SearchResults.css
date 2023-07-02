@@ -1,0 +1,11 @@
+.SearchResults {
+  --search-title-text-s: 18px;
+  color: var(--text-color);
+}
+.SearchResults {
+  padding: 1vw;
+  background-color: var(--primary-color);
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}

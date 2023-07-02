@@ -1,0 +1,112 @@
+.Header {
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: relative;
+  /* background-color: var(--primary-color); */
+  background-color: transparent;
+  z-index: 999;
+}
+.header__left {
+  gap: 25px;
+}
+.header__right {
+  gap: 10px;
+}
+.header__mainLogo {
+  height: 23px;
+}
+
+.header__form {
+  position: relative;
+  width: 45vw;
+  /* background-color: blue; */
+}
+
+.header__searchBar {
+  min-width: 40vw;
+  font-size: 1.05rem;
+  border-radius: 50vw 0 0 50vw;
+  border: 1px solid var(--border-color);
+  background-color: var(--searchbar-bg);
+  padding: 8px 20px;
+  color: var(--text-color);
+  /* background-color: red; */
+}
+.header__searchInnerIcon {
+  display: none;
+}
+.header__searchBar:focus {
+  padding-left: 45px;
+}
+.header__searchBar:focus + .header__searchInnerIcon {
+  display: block;
+  position: absolute;
+  opacity: 0.7;
+  left: 1%;
+  pointer-events: none;
+}
+.header__searchIcon {
+  height: 24px;
+}
+.header__searchButton {
+  border: 1px solid var(--border-color);
+  background-color: var(--button-color);
+  padding: 6px 20px 5px 15px;
+  border-radius: 0 50vw 50vw 0;
+  border-left: none;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.header__searchButton:hover {
+  background-color: var(--button-hover-color);
+}
+.header__clearIcon {
+  position: absolute;
+  right: calc(2.5rem + 2.5vw);
+  padding: 5px !important;
+  height: 33px !important;
+}
+
+.normal_icon_menuIcon {
+  padding: 5px !important;
+}
+
+.SmallScreen_SearchBar {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .SmallScreen_SearchBar {
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    width: 100vw;
+    background-color: var(--primary-color);
+    display: block;
+    padding: 0 5px;
+  }
+  .SmallScreen_SearchBar form {
+    width: max-content;
+  }
+
+  .SmallScreen_SearchBar form .header__searchBar {
+    width: 40vw;
+  }
+
+  .Header {
+    padding: 10px;
+  }
+  .header__left {
+    gap: 10px;
+  }
+  .header__mainLogo {
+    height: 20px;
+  }
+
+  .header__clearIcon {
+    position: absolute;
+    right: calc(6.8rem);
+    padding: 5px !important;
+    height: 33px !important;
+  }
+}

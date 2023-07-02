@@ -1,0 +1,28 @@
+.SlideBar {
+  padding: 10px;
+  gap: 10px;
+  font-size: var(--small-title);
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  background-color: var(--primary-color);
+  overflow-x: scroll;
+}
+
+.SlideBar .slideBar__option {
+  color: var(--text-color);
+  border-radius: 5px;
+  width: max-content;
+  white-space: nowrap;
+  font-weight: 500;
+  text-decoration: none;
+  background-color: var(--button-color);
+  padding: 5px 10px;
+}
+.SlideBar .slideBar__option:hover {
+  background-color: var(--button-hover-color);
+}
+.SlideBar .slideBar__option.active {
+  background-color: var(--selected-option-bg);
+  color: var(--selected-option-text);
+}
