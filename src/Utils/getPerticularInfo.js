@@ -11,9 +11,6 @@ const getVideoInfo = async (videoId) => {
             return (convertedData.items[0]);
         }
     } catch (err) {
-        // console.log("--------------");
-        // console.log(err);
-        // console.log("--------------");
         return undefined;
     }
 };
@@ -31,9 +28,6 @@ const getChannelInfo = async (channelId) => {
             return (convertedData.items[0]);
         }
     } catch (err) {
-        // console.log("--------------");
-        // console.log(err);
-        // console.log("--------------");
         return undefined;
     }
 };

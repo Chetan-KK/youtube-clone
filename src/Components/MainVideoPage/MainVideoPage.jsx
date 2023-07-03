@@ -6,12 +6,16 @@ import formatNumber from "../../Utils/numConvert";
 // import SlideBar from "../SlideBar/SlideBar";
 
 function MainVideoPage() {
+  //for player
   const [player, setPlayer] = useState(null);
   const playerRef = useRef(null);
+
+  //for keyboar controls
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
+  //for data
   const [channelLogo, setChannelLogo] = useState(null);
   const [views, setViews] = useState(null);
   const [videoId, setVideoId] = useState(null);
@@ -28,7 +32,6 @@ function MainVideoPage() {
       modestbranding: 1, // Hide YouTube logo
       showinfo: 0, // Hide video title
       rel: 0, // Do not show related videos at the end
-      disablekb: 1, // Disable keyboard controls
     },
   };
 
