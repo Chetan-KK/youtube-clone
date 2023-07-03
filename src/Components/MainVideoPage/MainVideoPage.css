@@ -5,6 +5,15 @@
   width: 100vw;
   gap: 2vw;
 }
+.video-container .placeholder {
+  width: calc(35vw + 17rem);
+  border-radius: 10px;
+  height: calc(19vw + 9.8rem);
+}
+.video-container .placeholder .animated-background {
+  border-radius: 10px;
+}
+
 .player-section .video-container {
   position: relative;
 }
@@ -32,14 +41,27 @@
   .player-section .video_player {
     margin: 0rem;
   }
-  .player-section .video_player-iframe {
+  .video-container {
     width: 100vw;
-    height: 57vw;
-    border-radius: 0;
+    overflow: hidden;
   }
+  .player-section .video_player-iframe,
+  .video-container .placeholder,
+  .video-container .placeholder .animated-background {
+    width: calc(100vw * 1.35);
+    scale: 0.75;
+    height: calc(57vw * 1.35);
+    border-radius: 0;
+    transform: translate(-17%, -17%);
+  }
+  .video-container .placeholder .animated-background {
+    display: none;
+  }
+
   .videos-section {
     width: 100vw;
     height: 60px;
     /* background-color: red; */
+    transform: translateY(-70px);
   }
 }

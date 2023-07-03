@@ -13,6 +13,10 @@
   --small-text: 12px;
   --dim-text-color: rgb(150, 150, 150);
   --ff: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  /* placeholder colors */
+  --placeholder-primary-c: #eee;
+  --placeholder-secondary-c: #dddddd;
 }
 .dark__mode {
   --primary-color: #0f0f0f;
@@ -29,6 +33,10 @@
   --small-text: 12px;
   --dim-text-color: rgb(150, 150, 150);
   --ff: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  /* placeholder colors */
+  --placeholder-primary-c: #141414;
+  --placeholder-secondary-c: #202020;
 }
 ::-webkit-scrollbar {
   background-color: var(--primary-color);
@@ -77,6 +85,36 @@ body {
 .link {
   text-decoration: none;
 }
+
+.placeholder {
+  background-color: var(--placeholder-primary-c);
+}
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -768px 0;
+  }
+  100% {
+    background-position: 768px 0;
+  }
+}
+
+.placeholder .animated-background {
+  animation-duration: 2.25s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: var(--placeholder-secondary-c);
+  background: linear-gradient(
+    to right,
+    var(--placeholder-primary-c) 10%,
+    var(--placeholder-secondary-c) 18%,
+    var(--placeholder-primary-c) 33%
+  );
+  background-size: 800px 104px;
+  height: 100%;
+  position: relative;
+}
 @media screen and (max-width: 800px) {
   :root,
   .dark__mode {
@@ -88,5 +126,13 @@ body {
   ::-webkit-scrollbar {
     width: 0px;
     height: 3px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .normal_icon {
+    padding: 10px;
+    border-radius: 50vw;
+    height: 35px;
+    cursor: pointer;
   }
 }

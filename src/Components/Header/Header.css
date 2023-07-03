@@ -110,3 +110,8 @@
     height: 33px !important;
   }
 }
+@media screen and (max-width: 600px) {
+  .Header {
+    padding: 10px;
+  }
+}

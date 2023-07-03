@@ -7,13 +7,10 @@ import formatNumber from "../../Utils/numConvert";
 
 function MainVideoPage() {
   //for player
-  const [player, setPlayer] = useState(null);
   const playerRef = useRef(null);
 
-  //for keyboar controls
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [player, setPlayer] = useState(null);
+  const [isVideoReady, setIsVideoReady] = useState(false);
 
   //for data
   const [channelLogo, setChannelLogo] = useState(null);
@@ -43,6 +40,7 @@ function MainVideoPage() {
   const readyFunc = (event) => {
     // event.target.playVideo();
     setPlayer(event.target);
+    setIsVideoReady(true);
   };
 
   useEffect(() => {
@@ -84,21 +82,6 @@ function MainVideoPage() {
     };
   }, [player]);
 
-  useEffect(() => {
-    if (player) {
-      const updateCurrentTime = () => {
-        setCurrentTime(player.getCurrentTime());
-        setDuration(player.getDuration());
-      };
-
-      const intervalId = setInterval(updateCurrentTime, 1000);
-
-      return () => {
-        clearInterval(intervalId);
-      };
-    }
-  }, [player]);
-
   const toggleFullscreen = () => {
     const iframe = player.getIframe();
     if (iframe) {
@@ -132,6 +115,11 @@ function MainVideoPage() {
     <div className="MainVideoPage flex">
       <div className="player-section">
         <div className="video-container">
+          {isVideoReady ? undefined : (
+            <div className="placeholder">
+              <div className="animated-background"></div>
+            </div>
+          )}
           <YouTube
             className="video_player"
             iframeClassName="video_player-iframe"
