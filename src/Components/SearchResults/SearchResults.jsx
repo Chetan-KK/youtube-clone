@@ -14,34 +14,34 @@ function SearchResults() {
 
   //main gatting result from api
 
-  // const getResults = async () => {
-  //   try {
-  //     const fetchedData = await fetch(
-  //       `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${
-  //         import.meta.env.VITE_API_KEY
-  //       }&type=video&q=${id}&maxResults=20`
-  //     );
-  //     const convertedData = await fetchedData.json();
+  const getResults = async () => {
+    try {
+      const fetchedData = await fetch(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${
+          import.meta.env.VITE_API_KEY
+        }&type=video&q=${id}&maxResults=20&videoDuration=long`
+      );
+      const convertedData = await fetchedData.json();
 
-  //     console.log(convertedData);
+      console.log(convertedData);
 
-  //     if (!convertedData.pageInfo) {
-  //       throw convertedData.error.message;
-  //     } else {
-  //       setResults(convertedData.items);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+      if (!convertedData.pageInfo) {
+        throw convertedData.error.message;
+      } else {
+        setResults(convertedData.items);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   //dummy data
 
-  const getResults = async () => {
-    const convertedData = searchResult;
-    setResults(convertedData.items);
-    console.log(convertedData);
-  };
+  // const getResults = async () => {
+  //   const convertedData = searchResult;
+  //   setResults(convertedData.items);
+  //   console.log(convertedData);
+  // };
 
   return (
     <div className="SearchResults">

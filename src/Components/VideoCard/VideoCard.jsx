@@ -25,9 +25,11 @@ function VideoCard(props) {
     } else {
       setTheme("light");
     }
-
-    getData();
   }, []);
+
+  useEffect(() => {
+    getData();
+  }, [props.videoId]);
 
   async function getData() {
     const videoInfo = await getVideoInfo(props.videoId);
@@ -61,7 +63,7 @@ function VideoCard(props) {
           <div className="desc_side">
             <div className="video__title">{props.title}</div>
             <div className="channel__name">{props.channelTitle}</div>
-            <span className="video__views">{views}</span>
+            <span className="video__views">{views} views &#x2022;</span>
             <span className="video__publishDate">{publishDate}</span>
           </div>
         </div>

@@ -11,10 +11,11 @@ function HomeResultsPage() {
   const location = useLocation();
 
   useEffect(() => {
-    // if(id == all){
-    //   id =
-    // }
-    getResult();
+    if (id === "All") {
+      getResult("programming");
+    } else {
+      getResult(id);
+    }
   }, [location]);
 
   const [results, setResults] = useState([]);
@@ -26,36 +27,17 @@ function HomeResultsPage() {
 
   //main gatting result from api
 
-  // const getResult = async () => {
-  //   if (results.length >= 1000000) {
-  //     setHasMore(false);
-  //   }
-  //   try {
-  //     const fetchedData = await fetch(
-  //       `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${
-  //         import.meta.env.VITE_API_KEY
-  //       }&type=video&q=${id}&maxResults=20`
-  //     );
-  //     const convertedData = await fetchedData.json();
-  //     if (!convertedData.pageInfo) {
-  //       throw convertedData.error.message;
-  //     } else {
-  //       setResults(convertedData.items);
-  //       console.log(results);
-  //       setLoaded(true);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // dummy get result
-  const getResult = async () => {
+  const getResult = async (typeId) => {
     if (results.length >= 1000000) {
       setHasMore(false);
     }
     try {
-      const convertedData = MainDataCopy;
+      const fetchedData = await fetch(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${
+          import.meta.env.VITE_API_KEY
+        }&type=video&q=${typeId}&maxResults=20&videoDuration=long`
+      );
+      const convertedData = await fetchedData.json();
       if (!convertedData.pageInfo) {
         throw convertedData.error.message;
       } else {
@@ -67,6 +49,25 @@ function HomeResultsPage() {
       console.log(err);
     }
   };
+
+  // dummy get result
+  // const getResult = async () => {
+  //   if (results.length >= 1000000) {
+  //     setHasMore(false);
+  //   }
+  //   try {
+  //     const convertedData = MainDataCopy;
+  //     if (!convertedData.pageInfo) {
+  //       throw convertedData.error.message;
+  //     } else {
+  //       setResults(convertedData.items);
+  //       console.log(results);
+  //       setLoaded(true);
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   let uniqueKey = 0;
   return (
